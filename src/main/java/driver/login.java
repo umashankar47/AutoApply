@@ -17,7 +17,9 @@ public class login {
 	    	//https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/chrome/ChromeDriver.html
 	    	
 	    	
-	    	
+	    	String email = "email";
+	    	String password = "password";
+	    	String loginUrl = "https://www.linkedin.com/login";
 	    	
 	        // Setup WebDriver
 //	        WebDriverManager.chromedriver().setup();
@@ -42,11 +44,11 @@ public class login {
 	        
 
 	        // Open LinkedIn Login Page
-	        driver.get("https://www.linkedin.com/login");
+	        driver.get(loginUrl);
 
 	        // Login
-	        driver.findElement(By.id("username")).sendKeys("musicplug79@gmail.com");
-	        driver.findElement(By.id("password")).sendKeys("MusicPlugPassword@123#");
+	        driver.findElement(By.id("username")).sendKeys(email);
+	        driver.findElement(By.id("password")).sendKeys(password);
 	        driver.findElement(By.xpath("//button[@type='submit']")).click();
 
 	        // Wait for the page to load
