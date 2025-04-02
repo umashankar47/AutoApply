@@ -5,14 +5,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.yaml.snakeyaml.Yaml;
 
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+
+import data.Information;
 import data.Login;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.io.*;
 
 /**
  * Hello world!
@@ -23,7 +28,7 @@ public class App
     public static void main( String[] args ) {
     	
     	
-    	Map<String ,String> config = readData();
+    	Map<String ,String> config = readConfig();
     	
        	
     	ChromeOptions options = new ChromeOptions();
@@ -44,8 +49,12 @@ public class App
         driver.manage().timeouts().implicitlyWait(timeout);
            
     	
-    	Login login = new Login(config.get("email").toString(), config.get("password").toString());
-    	login.setloginUrl(config.get("loginUrl").toString());
+//    	Login login = new Login(config.get("email").toString(), config.get("password").toString());
+//    	login.setloginUrl(config.get("loginUrl").toString());
+        
+        Login login = readData();
+        Information information = readInfo();
+        
     	
     	Scanner scanner = new Scanner(System.in);
         int choice;
@@ -94,9 +103,10 @@ public class App
     }
     
     
-    public static Map<String , String> readData() {
+    private static Map<String, String> readConfig() {
+    		
     	
- 		Yaml yaml = new Yaml();
+    	Yaml yaml = new Yaml();
 		
 		System.out.println("Reading config.yaml file");
 		
@@ -115,8 +125,58 @@ public class App
          
             
             return data;
+    }
+
+
+	public static Login readData() {
+    	
+
+ 		
+ 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+ 		
+ 		Login login = new Login();
+		
+		System.out.println("Reading login.yaml file");
+		
+		try {
+			 login = mapper.readValue(new File("login.yaml"), Login.class);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+            
+       return login;     
             
     }
+	
+	public static Information readInfo( ) {
+		
+		
+		ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+ 		
+ 		Information info = new Information();
+		
+		System.out.println("Reading login.yaml file");
+		
+		try {
+			
+			
+			 info = mapper.readValue(new File("Info.yaml"), Information.class);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+            
+       return info;    
+	
+		
+	}
 		
 	
 }

@@ -1,19 +1,1 @@
-
 debugAddress: localhost:9222
-
-loginUrl: https://www.linkedin.com/login
-
-email:
-
-password:
-
-search_query: "Java Developer"
-
-search_location: "India"
-
-easy_apply: "true"
-
-sort_by: "Date Posted"
-
-
-

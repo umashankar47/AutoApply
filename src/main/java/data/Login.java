@@ -10,11 +10,11 @@ public class Login {
 	private String password;
 	private String loginUrl;
 	
-	public Login(String email, String password) {
-		this.email = email;
-		this.password = password;
-		
-	}
+//	public Login(String email, String password) {
+//		this.email = email;
+//		this.password = password;
+//		
+//	}
 	
 	
 	public Login setloginUrl(String loginUrl) {

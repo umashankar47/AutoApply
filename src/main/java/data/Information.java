@@ -7,16 +7,9 @@ public class Information {
 		private String lastName;
 		private String countryCode;
 		private String phoneNumber;
+		private String resumeUrl;
 		
-		
-		Information(String email, String firstName, String lastName, String countryCode, String phoneNumber) {
-			
-			this.email = email;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.countryCode = countryCode;
-            this.phoneNumber = phoneNumber;
-		}
+
 		
 		public String getEmail() {
 			
@@ -35,14 +28,19 @@ public class Information {
 		public String getFirstName() {
 			return firstName;
 		}
-		public void setFirstName(String firstName) {
+		
+		public Information setFirstName(String firstName) {
 			this.firstName = firstName;
+			return this;
 		}
+		
+		
 		public String getLastName() {
 			return lastName;
 		}
-		public void setLastName(String lastName) {
+		public Information setLastName(String lastName) {
 			this.lastName = lastName;
+			return this;
 		}
 		public String getCountryCode() {
 			return countryCode;
@@ -56,6 +54,18 @@ public class Information {
 		public void setPhoneNumber(String phoneNumber) {
 			this.phoneNumber = phoneNumber;
 		}
+		
+		public Information setReumeUrl(String resumeURL) {
+			this.resumeUrl = resumeURL;
+			return this;
+		}
+		
+		public String getResumeUrl() {
+			
+			return resumeUrl;
+			
+		}
+		
 		
 		
 		
