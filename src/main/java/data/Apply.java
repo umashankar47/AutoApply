@@ -12,16 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class Apply {
 	
-	private boolean followPage;
-
-//	private String jobTitle;	
 	
-	public  Apply setFollowPage(boolean followPage) {	
-		
-		this.followPage = followPage;	
-		
-		return this;
-	}
 	
 	
 	public static void applyNow1(WebDriver driver, Information information) {
@@ -29,8 +20,8 @@ public class Apply {
 		
 		Map<String , String > elem = new HashMap<String, String>();	
 		
-		elem.put("", information.getFirstName());
-		elem.put("", information.getLastName());	
+		elem.put("single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4166500546-3345333227334249305-text", information.getFirstName());
+		elem.put("single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4166500546-6227323825487337031-text", information.getLastName());	
 		elem.put("text-entity-list-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4197206858-10935740529-multipleChoice", information.getEmail());
 		elem.put("text-entity-list-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4197206858-10935740537-phoneNumber-country", information.getCountryCode());
 		elem.put("single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4197206858-10935740537-phoneNumber-nationalNumber", information.getPhoneNumber());	
@@ -71,6 +62,11 @@ public class Apply {
 				}				
 		}	
 		
+		  
+        WebElement nextButton = driver.findElement(By.xpath("//button[.//span[text()='Next']]"));
+        nextButton.click();
+    	
+		
 	}
 
 	
@@ -92,17 +88,39 @@ public class Apply {
             WebElement fileInput = driver.findElement(By.id("jobs-document-upload-file-input-upload-resume-urn:li:fsu_jobApplicationFileUploadFormElement:urn:li:jobs_applyformcommon_easyApplyFormElement:(4197206858,10935740521,document)"));
 
             // Upload file by sending the file path
-    fileInput.sendKeys(information.getResumeUrl());  // Use absolute path
+            fileInput.sendKeys(information.getResumeUrl());  // Use absolute path
 
             System.out.println("Resume uploaded successfully!");
         	
         }
        
-		
+       //else select Resume
+        WebElement resumeRadioButton = driver.findElement(By.id("jobsDocumentCardToggle-ember2023"));
+
+        // Click to select the resume
+        resumeRadioButton.click();
+
+        System.out.println("Resume selected!");
+        
+        
+        WebElement nextButton = driver.findElement(By.xpath("//button[.//span[text()='Next']]"));
+        nextButton.click();
+    
 		
 		
 	}
 	
+	
+	public static void applyNowReview(WebDriver driver,Boolean followCompany) {
+		
+		WebElement checkbox = driver.findElement(By.id("follow-company-checkbox"));
+		
+		if ( followCompany && !checkbox.isSelected()) {
+			
+		    checkbox.click();
+		}
+
+	}
 	
 	
 //	 WebElement dropdownElement = driver.findElement(By.id(es.getKey()));

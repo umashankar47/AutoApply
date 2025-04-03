@@ -34,6 +34,7 @@ public class App
     	ChromeOptions options = new ChromeOptions();
     	
     	String debubgAddress = config.get("debugAddress");
+    	boolean followCompany = Boolean.parseBoolean(config.get("followCompany"));
     	
         options.setExperimentalOption("debuggerAddress", debubgAddress);
         
